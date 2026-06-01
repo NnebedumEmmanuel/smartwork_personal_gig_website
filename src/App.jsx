@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { Button } from "./components/Button";
 import { Card, CardContent } from "./components/Card";
-import { BRAND, navItems, services, packageCards, supportPlans, tools, faqs } from "./data";
+import { BRAND, navItems, services, packageCards, supportPlans, tools, faqs, portfolio } from "./data";
 
 function SectionTitle({ eyebrow, title, description }) {
   return (
@@ -268,6 +268,32 @@ function Packages() {
     </section>
   );
 }
+function BuildersManifesto () {
+  return (
+    <section className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Background glow effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-900/20 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+          The <span className="text-cyan-400">Builder's</span> Manifesto
+        </h2>
+        
+        <div className="space-y-6 text-lg text-slate-300 leading-relaxed text-left md:text-center">
+          <p>
+            I am a builder, not a theorist. A lot of consultants want to sell you reports on how AI might change your industry in five years. I prefer to build the systems that save you 15 hours by next Friday.
+          </p>
+          <p>
+            My focus is strictly on Agentic AI engineering—designing resilient, approval-first systems that connect your existing tools and execute real work. I don't build generic chat wrappers. I build workflow command centers.
+          </p>
+          <p className="font-semibold text-white">
+            If you want to talk about theory, hire an analyst. If you want to automate your operations and reclaim your time, let's build.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 function Support() {
   return (
@@ -337,27 +363,66 @@ function Portfolio() {
   return (
     <section id="portfolio" className="bg-slate-950 px-5 py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Portfolio" title="Built around practical workflow systems" description="Examples of the type of systems SmartWorkHub builds and customizes for clients." />
-        <Card className="overflow-hidden border-white/10 bg-white/[0.04] text-white">
-          <CardContent className="grid gap-8 p-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <div className="mb-5 inline-flex rounded-full bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-200">Sample project</div>
-              <h3 className="text-3xl font-black">AgencyOps AI Agent System</h3>
-              <p className="mt-4 leading-7 text-slate-300">A multi-agent workflow system with Discord command channels, AI integration, n8n/SMTP automation, system health monitoring, outreach review, reply handling, lead research, marketing research, data analytics, and error logging.</p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {["OpenClaw", "n8n", "Discord", "Node.js", "MongoDB", "VPS", "Google tools", "SMTP"].map((x) => <Pill key={x}>{x}</Pill>)}
-              </div>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {["Command channels", "AI reply handling", "Lead research", "System health logs", "Approval workflows", "Automation backend"].map((x) => (
-                <div key={x} className="rounded-2xl border border-white/10 bg-slate-900/80 p-4 text-slate-200">
-                  <CheckCircle2 className="mb-3 h-5 w-5 text-emerald-300" />
-                  {x}
+        <SectionTitle
+          eyebrow="Portfolio"
+          title="Built around practical workflow systems"
+          description="Selected systems, demos, and workflow components that show the kind of assistant infrastructure SmartWorkHub can build and customize."
+        />
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          {portfolio.map((project, index) => (
+            <Card
+              key={project.title}
+              className={`overflow-hidden border-white/10 text-white ${
+                index === 0 ? "bg-cyan-400 text-slate-950 lg:col-span-2" : "bg-white/[0.04]"
+              }`}
+            >
+              <CardContent className="p-7">
+                <div className={`mb-5 inline-flex rounded-full px-4 py-2 text-sm font-semibold ${
+                  index === 0 ? "bg-slate-950/10 text-slate-950" : "bg-cyan-300/10 text-cyan-200"
+                }`}>
+                  {project.status}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+
+                <h3 className="text-2xl font-black md:text-3xl">{project.title}</h3>
+                <p className={`mt-4 leading-7 ${index === 0 ? "text-slate-900" : "text-slate-300"}`}>
+                  {project.description}
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {project.metrics.map((metric) => (
+                    <div
+                      key={metric}
+                      className={`rounded-2xl border p-4 font-bold ${
+                        index === 0
+                          ? "border-slate-950/10 bg-slate-950/10 text-slate-950"
+                          : "border-white/10 bg-slate-900/80 text-cyan-200"
+                      }`}
+                    >
+                      <CheckCircle2 className={`mb-2 h-5 w-5 ${index === 0 ? "text-slate-950" : "text-emerald-300"}`} />
+                      {metric}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`rounded-full border px-3 py-1 text-sm ${
+                        index === 0
+                          ? "border-slate-950/10 bg-slate-950/10 text-slate-950"
+                          : "border-white/10 bg-white/5 text-slate-200"
+                      }`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -407,33 +472,81 @@ function Booking() {
 
 function InquiryForm() {
   const serviceOptions = useMemo(() => services.map((s) => s.title), []);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setStatus({ state: "loading", message: "Sending your inquiry..." });
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch(BRAND.formEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      form.reset();
+      setStatus({
+        state: "success",
+        message: "Thank you. Your inquiry has been sent to SmartWorkHub. I will review it and reply soon.",
+      });
+    } catch (error) {
+      setStatus({
+        state: "error",
+        message: error.message || `Unable to send right now. Please email ${BRAND.contactEmail} directly.`,
+      });
+    }
+  }
+
   return (
     <section id="contact" className="bg-slate-950 px-5 py-20">
       <div className="mx-auto max-w-4xl">
-        <SectionTitle eyebrow="Request a quote" title="Send your assistant idea" description="This form is front-end only for now. When we connect the backend later, submissions can go to email, Google Sheets, n8n, or your CRM." />
+        <SectionTitle
+          eyebrow="Request a quote"
+          title="Send your assistant idea"
+          description="This form sends inquiries through the secure backend email endpoint when deployed with Brevo environment variables."
+        />
         <Card className="border-white/10 bg-white/[0.04] text-white">
           <CardContent className="p-7">
-            {submitted ? (
+            {status.state === "success" ? (
               <div className="rounded-3xl bg-emerald-400/10 p-8 text-center">
                 <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-emerald-300" />
-                <h3 className="text-2xl font-bold">Inquiry captured</h3>
-                <p className="mt-3 text-slate-300">This demo form is ready for backend connection. For now, use the Calendly link or email {BRAND.contactEmail}.</p>
+                <h3 className="text-2xl font-bold">Inquiry sent</h3>
+                <p className="mt-3 text-slate-300">{status.message}</p>
+                <Button onClick={() => setStatus({ state: "idle", message: "" })} className="mt-6">
+                  Send another inquiry
+                </Button>
               </div>
             ) : (
-              <form className="grid gap-5" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+              <form className="grid gap-5" onSubmit={handleSubmit}>
+                <input type="text" name="company" className="hidden" tabIndex="-1" autoComplete="off" />
                 <div className="grid gap-5 md:grid-cols-2">
-                  <input required placeholder="Full name" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
-                  <input required type="email" placeholder="Email address" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+                  <input required name="name" placeholder="Full name" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+                  <input required name="email" type="email" placeholder="Email address" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
                 </div>
-                <select required className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300">
+                <input name="business" placeholder="Business / brand name (optional)" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+                <select required name="service" className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300">
                   <option value="">Which service are you interested in?</option>
                   {serviceOptions.map((s) => <option key={s}>{s}</option>)}
                   <option>Not sure yet</option>
                 </select>
-                <textarea required rows={5} placeholder="Describe the main workflow or problem you want the assistant to solve." className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
-                <textarea rows={4} placeholder="Which tools should it work with? Gmail, Calendar, Notion, Sheets, Discord, Telegram, websites, etc." className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
-                <Button type="submit"><Send className="mr-2 h-4 w-4" /> Submit inquiry</Button>
+                <textarea required name="message" rows={5} placeholder="Describe the main workflow or problem you want the assistant to solve." className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+                <textarea name="tools" rows={4} placeholder="Which tools should it work with? Gmail, Calendar, Notion, Sheets, Discord, Telegram, websites, etc." className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+                {status.state === "error" && <div className="rounded-2xl border border-red-300/20 bg-red-400/10 p-4 text-sm text-red-200">{status.message}</div>}
+                {status.state === "loading" && <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-sm text-cyan-200">{status.message}</div>}
+                <Button type="submit" disabled={status.state === "loading"}>
+                  <Send className="mr-2 h-4 w-4" /> {status.state === "loading" ? "Sending..." : "Submit inquiry"}
+                </Button>
               </form>
             )}
           </CardContent>
@@ -453,11 +566,11 @@ function FAQ() {
             <details key={faq.q} className="group rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-white">
               <summary className="cursor-pointer list-none text-lg font-bold marker:hidden">
                 <div className="flex items-center justify-between gap-4">
-                  <span>{faq.q}</span>
+                  <span>{faq.q || faq.question}</span>
                   <ChevronRight className="h-5 w-5 transition group-open:rotate-90" />
                 </div>
               </summary>
-              <p className="mt-4 leading-7 text-slate-300">{faq.a}</p>
+              <p className="mt-4 leading-7 text-slate-300">{faq.a || faq.answer}</p>
             </details>
           ))}
         </div>
@@ -507,6 +620,7 @@ export default function App() {
       <Packages />
       <Support />
       <Infrastructure />
+      <BuildersManifesto />
       <Portfolio />
       <Booking />
       <InquiryForm />

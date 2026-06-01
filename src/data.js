@@ -5,9 +5,13 @@ import {
 } from "lucide-react";
 
 export const BRAND = {
-  calendlyUrl: "https://calendly.com/smartworkhub/ai-assistant-consultation",
-  contactEmail: "smartworkhub.com@gmail.com",
-  businessName: "SmartWorkHub",
+  // Public frontend configuration. These can safely use VITE_ variables.
+  calendlyUrl:
+    import.meta.env.VITE_CALENDLY_URL ||
+    "https://calendly.com/smartworkhub-com/smartworkhub-ai-assistant-consultation",
+  contactEmail: import.meta.env.VITE_CONTACT_EMAIL || "smartworkhub.com@gmail.com",
+  businessName: import.meta.env.VITE_BUSINESS_NAME || "SmartWorkHub",
+  formEndpoint: import.meta.env.VITE_FORM_ENDPOINT || "/api/contact",
 };
 
 export const navItems = [
@@ -15,6 +19,7 @@ export const navItems = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Packages", href: "#packages" },
   { label: "Support", href: "#support" },
+  { label: "Portfolio", href: "#portfolio" },
   { label: "Book", href: "#book" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -90,6 +95,65 @@ export const tools = [
   "VPS hosting",
 ];
 
+export const portfolio = [
+  {
+    title: "AgencyOps AI Agent System",
+    description:
+      "Built a VPS-hosted multi-agent workflow command center for outreach review, reply handling, lead research, marketing research, analytics, operator scans, health monitoring, approval logs, and SMTP/n8n workflow support.",
+    metrics: ["10+ operating workflows", "24/7 VPS-hosted monitoring"],
+    tags: ["OpenClaw", "n8n", "Discord", "Node.js", "MongoDB", "PM2", "VPS"],
+    status: "Built system",
+  },
+  {
+    title: "Personal Assistant Agent System",
+    description:
+      "Designed a chat-based personal assistant workflow for daily planning, reminders, message drafting, research support, notes-to-action, and document summaries through a simple command interface.",
+    metrics: ["5+ productivity workflows", "Approval-first task handling"],
+    tags: ["AI Agents", "Telegram/Discord", "Gmail", "Calendar", "Workflow Design"],
+    status: "Assistant demo",
+  },
+  {
+    title: "YouTube Autonomous Agent Workflow",
+    description:
+      "Built a creator operations workflow concept for topic research, script planning, metadata preparation, content tracking, approval steps, and future YouTube publishing support.",
+    metrics: ["8-stage creator workflow", "Idea → script → upload pipeline"],
+    tags: ["YouTube API", "ContentOps", "n8n", "Automation", "Dashboard"],
+    status: "Creator workflow",
+  },
+  {
+    title: "Automated Lead Routing & CRM Sync",
+    description:
+      "Eliminated manual data entry by building a workflow that qualifies inbound leads and syncs them across the CRM instantly.",
+    metrics: ["14 hours/week saved", "Zero manual data entry"],
+    tags: ["n8n", "CRM", "Agentic Workflow"],
+    status: "Workflow template",
+  },
+  {
+    title: "AI Customer Support Command Center",
+    description:
+      "Deployed an approval-first support agent that drafts context-aware responses to standard tickets, requiring only one click from a human agent to send.",
+    metrics: ["80% faster response time", "Scalable support"],
+    tags: ["OpenClaw", "AI Agents", "Customer Success"],
+    status: "Support workflow",
+  },
+  {
+    title: "Document & Report Automation Agent",
+    description:
+      "Created a document workflow that turns long notes, files, and research inputs into structured summaries, action items, client-ready reports, and reusable templates.",
+    metrics: ["Multi-document summaries", "Reusable report templates"],
+    tags: ["Google Docs", "AI Summaries", "Reports", "Research", "Automation"],
+    status: "Report workflow",
+  },
+  {
+    title: "Telegram Approval Workflow",
+    description:
+      "Built an approval-first automation layer where draft actions are sent to Telegram for review before emails, updates, or external workflow steps are completed.",
+    metrics: ["1-click approvals", "Audit trail for actions"],
+    tags: ["Telegram", "n8n", "Approvals", "Webhooks", "Safety Layer"],
+    status: "Automation component",
+  },
+];
+
 export const faqs = [
   {
     q: "Is this just ChatGPT prompts?",
@@ -122,5 +186,9 @@ export const faqs = [
   {
     q: "Does the content assistant include video editing or graphic design?",
     a: "No. The content workflow assistant focuses on written content workflows such as posts, captions, newsletters, short video scripts, outlines, calendars, and repurposing text from ideas, notes, or transcripts.",
+  },
+  {
+    q: "What happens if a third-party API updates or breaks?",
+    a: "APIs update, and webhooks sometimes fail—that is the reality of software. My service isn't just about building the system and walking away. With the monthly support retainers, I actively monitor logs, patch API breaks, and keep your workflow command center operational so you don't have to worry about the technical plumbing.",
   },
 ];

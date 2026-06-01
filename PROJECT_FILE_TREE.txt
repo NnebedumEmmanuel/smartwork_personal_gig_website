@@ -1,20 +1,24 @@
-[FILE] .env.example (173 bytes)
-[FILE] DEPLOYMENT_GUIDE.md (1021 bytes)
-[FILE] README.md (1335 bytes)
-[FILE] SmartWorkHub_Website_Project_Overview.pdf (3230 bytes)
-[FILE] index.html (848 bytes)
-[FILE] package.json (609 bytes)
-[FILE] postcss.config.js (81 bytes)
-[DIR]  public
-[DIR]  src
-[FILE] src/App.jsx (27985 bytes)
-[DIR]  src/assets
-[DIR]  src/components
-[FILE] src/components/Button.jsx (1066 bytes)
-[FILE] src/components/Card.jsx (320 bytes)
-[FILE] src/data.js (5954 bytes)
-[FILE] src/index.css (283 bytes)
-[DIR]  src/lib
-[FILE] src/lib/utils.js (138 bytes)
-[FILE] src/main.jsx (239 bytes)
-[FILE] tailwind.config.js (352 bytes)
+[FILE] .env.example
+[FILE] .env.local.example
+[FILE] ENV_AND_BREVO_SETUP.md
+[FILE] PROJECT_FILE_TREE.txt
+[FILE] README.md
+[FILE] SETUP_CALENDLY.md
+[DIR] api
+[FILE] api/contact.js
+[FILE] index.html
+[FILE] package.json
+[FILE] postcss.config.js
+[DIR] public
+[DIR] src
+[FILE] src/App.jsx
+[DIR] src/components
+[FILE] src/components/Button.jsx
+[FILE] src/components/Card.jsx
+[FILE] src/data.js
+[FILE] src/index.css
+[DIR] src/lib
+[FILE] src/lib/utils.js
+[FILE] src/main.jsx
+[FILE] tailwind.config.js
+[FILE] vercel.json
